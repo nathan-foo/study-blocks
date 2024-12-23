@@ -3,9 +3,9 @@ import connectDB from "@/libs/mongodb";
 import Course from "@/models/course";
 
 export async function POST(request) {
-    const { name, description, createdBy } = await request.json();
+    const { title, description, createdBy } = await request.json();
     await connectDB();
-    await Course.create({ name, description, createdBy });
+    await Course.create({ title, description, createdBy });
     return NextResponse.json({ message: "Course Created" }, { status: 201 });
 }
 

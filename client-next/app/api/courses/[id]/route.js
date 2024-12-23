@@ -4,9 +4,9 @@ import Course from "@/models/course";
 
 export async function PUT(request, { params }) {
     const { id } = params;
-    const { newName: name, newDescription: description, newCreatedBy: createdBy } = await request.json();
+    const { newTitle: title, newDescription: description, newCreatedBy: createdBy } = await request.json();
     await connectDB();
-    await Course.findByIdAndUpdate(id, { name, description, createdBy });
+    await Course.findByIdAndUpdate(id, { title, description, createdBy });
     return NextResponse.json({ message: "Course Updated" }, { status: 200 });
 }
 

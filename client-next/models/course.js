@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const schema = new Schema(
     {
-        name: String,
+        title: String,
         description: String,
         createdBy: String,
     }

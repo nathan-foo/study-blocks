@@ -1,0 +1,23 @@
+import { NextResponse } from "next/server";
+import connectDB from "@/libs/mongodb";
+import User from "@/models/user";
+
+export async function POST(request) {
+    const { name, email } = await request.json();
+    await connectDB();
+    await User.create({ name, email });
+    return NextResponse.json({ message: "User Created" }, { status: 201 });
+}
+
+export async function GET() {
+    await connectDB();
+    const users = await User.find();
+    return NextResponse.json({ users });
+}
+
+export async function DELETE(request) {
+    const id = request.nextUrl.searchParams.get("id");
+    await connectDB();
+    await User.findByIdAndDelete(id);
+    return NextResponse.json({ message: "User Deleted" }, { status: 200 });
+}

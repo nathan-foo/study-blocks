@@ -47,11 +47,32 @@ export async function POST(request) {
     // Do something with payload
     const { id } = event.data;
     const eventType = event.type;
-    console.log(`Received webhook with ID ${id} and event type of ${eventType}`);
-    console.log('Webhook payload:', body);
+    // console.log(`Received webhook with ID ${id} and event type of ${eventType}`);
+    // console.log('Webhook payload:', body);
 
     if (event.type === 'user.created') {
-        console.log('userId:', event.data.id);
+        const url = process.env.USER_API_URL;
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    clerkId: event.data.id,
+                    first_name: event.data.first_name,
+                    last_name: event.data.last_name,
+                    email: event.data.email,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+        } catch (error) {
+            throw new Error('Failed to create user.');
+        }
     }
 
     return new Response('Webhook received', { status: 200 });

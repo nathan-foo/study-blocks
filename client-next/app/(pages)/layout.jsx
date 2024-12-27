@@ -1,6 +1,6 @@
 import Navbar from "./_components/Navbar";
 
-const DashboardLayout = ({ children }) => {
+const PageLayout = ({ children }) => {
     return ( 
         <div>
             <main>
@@ -11,4 +11,4 @@ const DashboardLayout = ({ children }) => {
      );
 }
  
-export default DashboardLayout;
+export default PageLayout;

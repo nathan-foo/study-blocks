@@ -8,5 +8,5 @@ const schema = new Schema(
     }
 );
 
-const Course = mongoose.models.Course || mongoose.model("Course", schema);
-export default Course;
+const Block = mongoose.models.Block || mongoose.model("Block", schema);
+export default Block;

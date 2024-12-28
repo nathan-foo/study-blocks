@@ -1,18 +1,18 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
-import Course from "@/models/course";
+import Block from "@/models/block";
 
 export async function PUT(request, { params }) {
     const { id } = params;
     const { newTitle: title, newDescription: description, newCreatedBy: createdBy } = await request.json();
     await connectDB();
-    await Course.findByIdAndUpdate(id, { title, description, createdBy });
-    return NextResponse.json({ message: "Course Updated" }, { status: 200 });
+    await Block.findByIdAndUpdate(id, { title, description, createdBy });
+    return NextResponse.json({ message: "Block Updated" }, { status: 200 });
 }
 
 export async function GET(request, { params }) {
     const { id } = params;
     await connectDB();
-    const course = await Course.findOne({ _id: id });
-    return NextResponse.json({ course }, { status: 200 });
+    const block = await Block.findOne({ _id: id });
+    return NextResponse.json({ block }, { status: 200 });
 }

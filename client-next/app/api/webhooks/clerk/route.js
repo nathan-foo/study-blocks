@@ -45,8 +45,9 @@ export async function POST(request) {
     }
 
     // Do something with payload
-    const { id } = event.data;
-    const eventType = event.type;
+    
+    // const { id } = event.data;
+    // const eventType = event.type;
     // console.log(`Received webhook with ID ${id} and event type of ${eventType}`);
     // console.log('Webhook payload:', body);
 

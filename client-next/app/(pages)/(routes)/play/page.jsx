@@ -2,7 +2,11 @@ import React from 'react'
 
 const PlayPage = () => {
   return (
-    <div>Play</div>
+    <div className="pt-16">
+      <div className="min-h-[200vh]">
+        Play
+      </div>
+    </div>
   )
 }
 

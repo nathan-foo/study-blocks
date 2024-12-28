@@ -23,32 +23,41 @@ const Navbar = () => {
     }, []);
 
   return (
-    <div className={`fixed bg-white top-0 left-0 w-full py-4 px-6 ${isScrolled ? 'shadow-md' : 'shadow-none'} transition-shadow duration-300`}>
-        <div className='container mx-auto flex items-center justify-end gap-x-3'>
-            <Link href='/'>
-                <Button size='sm' variant='ghost'>
-                    Home
-                </Button>
-            </Link>
-            <Link href='/play'>
-                <Button size='sm' variant='ghost'>
-                    Play
-                </Button>
-            </Link>
-            <Link href='/dashboard'>
-                <Button size='sm' variant='ghost'>
-                    Dashboard
-                </Button>
-            </Link>
-            {user ? (
-                <UserButton />
-            ) : (
-                <Link href='sign-in'>
-                    <Button size='sm'>
-                        Sign In
+    <div className={`fixed bg-white top-0 left-0 w-full py-4 px-6 ${isScrolled ? 'shadow-md' : 'shadow-none'} transition-shadow duration-300 z-50`}>
+        <div className='flex justify-between'>
+            <div className='w-full flex items-center'>
+                <Link href='/'>
+                    <p className='text-sm uppercase'>
+                        <b>Learn Daily</b>
+                    </p>
+                </Link>
+            </div>
+            <div className='container mx-auto flex items-center justify-end gap-x-3'>
+                <Link href='/'>
+                    <Button size='sm' variant='ghost'>
+                        Home
                     </Button>
                 </Link>
-            )}
+                <Link href='/play'>
+                    <Button size='sm' variant='ghost'>
+                        Play
+                    </Button>
+                </Link>
+                <Link href='/dashboard'>
+                    <Button size='sm' variant='ghost'>
+                        Dashboard
+                    </Button>
+                </Link>
+                {user ? (
+                    <UserButton />
+                ) : (
+                    <Link href='sign-in'>
+                        <Button size='sm'>
+                            Sign In
+                        </Button>
+                    </Link>
+                )}
+            </div>
         </div>
     </div>
   )

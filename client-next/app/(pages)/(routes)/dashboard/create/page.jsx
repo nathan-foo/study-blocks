@@ -2,7 +2,11 @@ import React from 'react'
 
 const CreatePage = () => {
   return (
-    <div>Create</div>
+    <div className="pt-16">
+      <div className="min-h-[200vh]">
+        Create
+      </div>
+    </div>
   )
 }
 

@@ -71,7 +71,7 @@ export async function POST(request) {
                 throw new Error(`Response status: ${response.status}`);
             }
         } catch (error) {
-            throw new Error('Failed to create user:', error);
+            throw new Error(`Failed to create user: ${error}`);
         }
     }
 

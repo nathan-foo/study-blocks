@@ -45,13 +45,14 @@ export async function POST(request) {
     }
 
     // Do something with payload
-    
+
     // const { id } = event.data;
     // const eventType = event.type;
     // console.log(`Received webhook with ID ${id} and event type of ${eventType}`);
     // console.log('Webhook payload:', body);
 
     if (event.type === 'user.created') {
+        // Make sure to store url in deployment environment
         const url = process.env.USER_API_URL;
 
         try {

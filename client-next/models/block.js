@@ -6,6 +6,7 @@ const schema = new Schema(
         createdBy: String,
         topic: String,
         difficulty: String,
+        outline: Object,
     }
 );
 

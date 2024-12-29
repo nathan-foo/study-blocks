@@ -2,20 +2,47 @@
 
 import React, { useState } from 'react'
 import BlockInput from '../../_components/BlockInput'
+import { v4 as uuidv4 } from 'uuid'
+import { useUser } from '@clerk/nextjs'
+import { Button } from '@/components/ui/button'
 
 const CreatePage = () => {
   const [formData, setFormData] = useState([]);
+  const { isLoaded, isSignedIn, user } = useUser();
 
   const handleInput = (fieldName, fieldValue) => {
     setFormData(prev => ({
       ...prev,
       [fieldName]: fieldValue,
     }));
-    console.log(formData);
   }
 
-  const generateCourseOutline = () => {
+  const generateBlock = async () => {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
+    const blockId = uuidv4();
+    const userId = user.id;
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          blockId: blockId,
+          createdBy: userId,
+          topic: formData.topic,
+          difficulty: formData.difficulty,
+        }),
+      });
 
+      if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`);
+      }
+    } catch (error) {
+      throw new Error(`Failed to create block: ${error}`);
+    }
+
+    return new Response('Block created', { status: 201 });
   }
 
   return (
@@ -26,6 +53,7 @@ const CreatePage = () => {
             setTopic={(value) => handleInput('topic', value)}
             setDifficulty={(value) => handleInput('difficulty', value)}
           />
+          <Button className='w-24 mt-4' onClick={generateBlock}>Generate</Button>
         </div>
       </div>
     </div>

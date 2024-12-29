@@ -4,9 +4,9 @@ import Block from "@/models/block";
 
 export async function PUT(request, { params }) {
     const { id } = params;
-    const { newBlockId: blockId, newCreatedBy: createdBy, newTopic: topic, newDifficulty: difficulty } = await request.json();
+    const { newBlockId: blockId, newCreatedBy: createdBy, newTopic: topic, newDifficulty: difficulty, newOutline: outline } = await request.json();
     await connectDB();
-    await Block.findByIdAndUpdate(id, { blockId, createdBy, topic, difficulty });
+    await Block.findByIdAndUpdate(id, { blockId, createdBy, topic, difficulty, outline });
     return NextResponse.json({ message: "Block Updated" }, { status: 200 });
 }
 

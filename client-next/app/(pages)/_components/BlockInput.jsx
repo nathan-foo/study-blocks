@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import React from 'react'
@@ -20,7 +19,6 @@ const BlockInput = ({ setTopic, setDifficulty }) => {
                     <SelectItem value='Hard'>Hard</SelectItem>
                 </SelectContent>
             </Select>
-            <Button className='w-24'>Generate</Button>
         </div>
     </div>
   )

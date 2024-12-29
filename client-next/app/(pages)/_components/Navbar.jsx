@@ -33,14 +33,14 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className='container mx-auto flex items-center justify-end gap-x-3'>
-                <Link href='/'>
-                    <Button size='sm' variant='ghost'>
-                        Home
-                    </Button>
-                </Link>
                 <Link href='/play'>
                     <Button size='sm' variant='ghost'>
                         Play
+                    </Button>
+                </Link>
+                <Link href='/create'>
+                    <Button size='sm' variant='ghost'>
+                        Create
                     </Button>
                 </Link>
                 <Link href='/dashboard'>

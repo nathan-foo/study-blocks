@@ -3,9 +3,9 @@ import connectDB from "@/lib/mongodb";
 import Block from "@/models/block";
 
 export async function POST(request) {
-    const { title, description, createdBy } = await request.json();
+    const { blockId, createdBy, topic, difficulty } = await request.json();
     await connectDB();
-    await Block.create({ title, description, createdBy });
+    await Block.create({ blockId, createdBy, topic, difficulty });
     return NextResponse.json({ message: "Block Created" }, { status: 201 });
 }
 

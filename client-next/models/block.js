@@ -2,9 +2,10 @@ import mongoose, { Schema } from "mongoose";
 
 const schema = new Schema(
     {
-        title: String,
-        description: String,
+        blockId: String,
         createdBy: String,
+        topic: String,
+        difficulty: String,
     }
 );
 

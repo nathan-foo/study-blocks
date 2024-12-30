@@ -15,9 +15,15 @@ export async function POST(request) {
     return NextResponse.json({ message: "Block Created" }, { status: 201 });
 }
 
-export async function GET() {
+export async function GET(request) {
+    const createdBy = request.nextUrl.searchParams.get("createdBy");
+
+    const query = {};
+    if (createdBy) query.createdBy = createdBy;
+
     await connectDB();
-    const blocks = await Block.find();
+
+    const blocks = await Block.find(query);
     return NextResponse.json({ blocks });
 }
 

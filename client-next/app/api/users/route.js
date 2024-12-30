@@ -9,9 +9,15 @@ export async function POST(request) {
     return NextResponse.json({ message: "User Created" }, { status: 201 });
 }
 
-export async function GET() {
+export async function GET(request) {
+    const clerkId = request.nextUrl.searchParams.get("clerkId");
+
+    const query = {};
+    if (clerkId) query.clerkId = clerkId;
+
     await connectDB();
-    const users = await User.find();
+
+    const users = await User.find(query);
     return NextResponse.json({ users });
 }
 

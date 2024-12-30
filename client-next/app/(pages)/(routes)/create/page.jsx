@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 
 const CreatePage = () => {
   const [formData, setFormData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const { isLoaded, isSignedIn, user } = useUser();
   const router = useRouter();
 
@@ -23,6 +24,8 @@ const CreatePage = () => {
     if (!formData.topic || !formData.difficulty) {
       return;
     }
+
+    setIsLoading(true);
 
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
     const blockId = uuidv4();
@@ -61,7 +64,11 @@ const CreatePage = () => {
             setTopic={(value) => handleInput('topic', value)}
             setDifficulty={(value) => handleInput('difficulty', value)}
           />
-          <Button className='w-24 mt-6' onClick={generateBlock}>Generate</Button>
+          {(isLoading) ? (
+            <Button disabled className='w-24 mt-6'>Loading...</Button>
+          ) : (
+            <Button className='w-24 mt-6' onClick={generateBlock}>Generate</Button>
+          )}
         </div>
       </div>
     </div>

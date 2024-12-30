@@ -34,13 +34,16 @@ const DashboardPage = () => {
 
   return (
     <div className="pt-16">
-      <div className="min-h-[200vh] px-32 pt-8">
+      <div className='pt-12 pb-8 font-black text-5xl flex items-center justify-center text-center'>
+        Your blocks
+      </div>
+      <div className="px-16 md:px-32 py-8">
         {blocks.length > 0 && (
           <div className='flex flex-col gap-y-4'>
             {blocks.map((block, index) => (
               <Link key={index} href={`/dashboard/${block._id}`}>
                 <div className='p-4 border rounded'>
-                  <h3 className='font-bold'>{block.topic || 'Untitled Block'}</h3>
+                  <h3 className='font-bold'>{block.outline.courseTitle || 'Untitled Block'}</h3>
                   <p>{block.difficulty || 'No Difficulty'}</p>
                 </div>
               </Link>

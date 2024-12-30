@@ -1,11 +1,31 @@
 "use client"
 
+import { Button } from '@/components/ui/button';
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 const ReviewPage = () => {
     const [block, setBlock] = useState();
+    const [pageIndex, setPageIndex] = useState(0);
     const params = useParams();
+
+    const handleBackClick = () => {
+        if (pageIndex > 0) {
+            setPageIndex(pageIndex - 1);
+        }
+        window.scrollTo({
+            top: 0,
+        });
+    }
+
+    const handleNextClick = () => {
+        if (pageIndex < block?.outline.chapters.length - 1) {
+            setPageIndex(pageIndex + 1);
+        }
+        window.scrollTo({
+            top: 0,
+        });
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -16,13 +36,13 @@ const ReviewPage = () => {
 
             try {
                 const response = await fetch(url, {
-                  cache: 'no-store'
+                    cache: 'no-store'
                 });
-        
+
                 if (!response.ok) {
                     throw new Error(`Response status: ${response.status}`);
                 }
-        
+
                 const data = await response.json();
                 setBlock(data.block);
             } catch (error) {
@@ -31,38 +51,52 @@ const ReviewPage = () => {
         }
         fetchData();
     }, []);
-  return (
-    <div className='pt-16'>
-        {block && (
-            <div className='pt-8 px-32'>
-                <div className='font-bold text-3xl'>
-                    {block.outline.courseTitle}
+    return (
+        <div className='py-16'>
+            {block && (
+                <div className='px-16 md:px-32'>
+                    <div className='pt-12 font-black text-4xl'>
+                        {block.outline.courseTitle}
+                    </div>
+                    <div className='pt-4'>
+                        {block.outline.summary}
+                    </div>
+                    <div>
+                        <div className='pt-8 font-bold text-3xl'>
+                            {block.outline.chapters[pageIndex].chapterTitle}
+                        </div>
+                        <div className='pt-4'>
+                            {block.outline.chapters[pageIndex].summary}
+                        </div>
+                        {block.outline.chapters[pageIndex].topics.map((topic, index) => (
+                            <div key={index}>
+                                <div className='pt-4 font-bold text-xl'>
+                                    {topic.topic}
+                                </div>
+                                <div className='pt-2'>
+                                    {topic.notes}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className='pt-12 flex items-center justify-between'>
+                        <Button
+                            onClick={handleBackClick}
+                            disabled={pageIndex === 0 ? true : false}
+                        >
+                            Back
+                        </Button>
+                        <Button
+                            onClick={handleNextClick}
+                            disabled={pageIndex === block?.outline.chapters.length - 1 ? true : false}
+                        >
+                            Next
+                        </Button>
+                    </div>
                 </div>
-                <div className='pt-2'>
-                    {block.outline.summary}
-                </div>
-                <div className='pt-2 font-bold text-2xl'>
-                    {block.outline.chapters[0].chapterTitle}
-                </div>
-                <div className='pt-2'>
-                    {block.outline.chapters[0].summary}
-                </div>
-                <div className='pt-2 font-bold'>
-                    {block.outline.chapters[0].topics[0].topic}
-                </div>
-                <div className='pt-2'>
-                    {block.outline.chapters[0].topics[0].notes}
-                </div>
-                <div className='pt-2 font-bold'>
-                    {block.outline.chapters[0].topics[1].topic}
-                </div>
-                <div className='pt-2'>
-                    {block.outline.chapters[0].topics[1].notes}
-                </div>
-            </div>
-        )}
-    </div>
-  )
+            )}
+        </div>
+    )
 }
 
 export default ReviewPage

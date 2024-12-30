@@ -41,6 +41,24 @@ const ReviewPage = () => {
                 <div className='pt-2'>
                     {block.outline.summary}
                 </div>
+                <div className='pt-2 font-bold text-2xl'>
+                    {block.outline.chapters[0].chapterTitle}
+                </div>
+                <div className='pt-2'>
+                    {block.outline.chapters[0].summary}
+                </div>
+                <div className='pt-2 font-bold'>
+                    {block.outline.chapters[0].topics[0].topic}
+                </div>
+                <div className='pt-2'>
+                    {block.outline.chapters[0].topics[0].notes}
+                </div>
+                <div className='pt-2 font-bold'>
+                    {block.outline.chapters[0].topics[1].topic}
+                </div>
+                <div className='pt-2'>
+                    {block.outline.chapters[0].topics[1].notes}
+                </div>
             </div>
         )}
     </div>

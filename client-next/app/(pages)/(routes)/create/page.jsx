@@ -5,10 +5,12 @@ import BlockInput from '../../_components/BlockInput'
 import { v4 as uuidv4 } from 'uuid'
 import { useUser } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
+import { useRouter } from 'next/navigation'
 
 const CreatePage = () => {
   const [formData, setFormData] = useState([]);
   const { isLoaded, isSignedIn, user } = useUser();
+  const router = useRouter();
 
   const handleInput = (fieldName, fieldValue) => {
     setFormData(prev => ({
@@ -18,6 +20,10 @@ const CreatePage = () => {
   }
 
   const generateBlock = async () => {
+    if (!formData.topic || !formData.difficulty) {
+      return;
+    }
+
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
     const blockId = uuidv4();
     const userId = user.id;
@@ -42,6 +48,8 @@ const CreatePage = () => {
       throw new Error(`Failed to create block: ${error}`);
     }
 
+    router.push('/dashboard');
+
     return new Response('Block created', { status: 201 });
   }
 
@@ -53,7 +61,7 @@ const CreatePage = () => {
             setTopic={(value) => handleInput('topic', value)}
             setDifficulty={(value) => handleInput('difficulty', value)}
           />
-          <Button className='w-24 mt-4' onClick={generateBlock}>Generate</Button>
+          <Button className='w-24 mt-6' onClick={generateBlock}>Generate</Button>
         </div>
       </div>
     </div>

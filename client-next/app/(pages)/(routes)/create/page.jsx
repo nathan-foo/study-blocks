@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import BlockInput from '../../_components/BlockInput'
+import { v4 as uuidv4 } from 'uuid'
 import { useUser } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
@@ -42,7 +43,7 @@ const CreatePage = () => {
       });
 
       if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`);
+        throw new Error(`Response status: ${response.status}`);
       }
     } catch (error) {
       throw new Error(`Failed to create block: ${error}`);

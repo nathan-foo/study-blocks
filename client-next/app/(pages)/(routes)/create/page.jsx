@@ -29,7 +29,8 @@ const CreatePage = () => {
 
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
     const blockId = uuidv4();
-    const userId = user.id;
+    const userId = user?.id;
+    
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -51,8 +52,6 @@ const CreatePage = () => {
       throw new Error(`Failed to create block: ${error}`);
     }
 
-    router.push('/dashboard');
-
     return new Response('Block created', { status: 201 });
   }
 
@@ -65,7 +64,7 @@ const CreatePage = () => {
             setDifficulty={(value) => handleInput('difficulty', value)}
           />
           {(isLoading) ? (
-            <Button disabled className='w-24 mt-6'>Loading...</Button>
+            <Button disabled className='w-24 mt-6'>Please wait...</Button>
           ) : (
             <Button className='w-24 mt-6' onClick={generateBlock}>Generate</Button>
           )}

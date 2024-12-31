@@ -1,1 +1,1 @@
-# learn-daily-prototype
+# sb-proof-of-concept

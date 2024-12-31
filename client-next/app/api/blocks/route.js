@@ -5,7 +5,7 @@ import { courseOutline } from "@/models/course";
 import { quizOutline } from "@/models/quiz";
 
 export async function POST(request) {
-    const { blockId, createdBy, topic, difficulty } = await request.json();
+    const { createdBy, topic, difficulty } = await request.json();
     
     const COURSE_PROMPT = `Generate study material for a ${topic} review. The level of difficulty will be ${difficulty}. Write a summary of each course, a list of chapters along with a summary for each chapter, and a topic list in each chapter. For each topic, generate relevant notes. Write all results in JSON format. Copy the following structure:\n{\ncourseTitle: string,\nsummary: string,\nchapters:\n[\n{\nchapterTitle: string,\nsummary: string,\ntopics:\n[\n{\ntopic: string,\nnotes: string,\n]\n}\n]\n}`;
 
@@ -18,7 +18,7 @@ export async function POST(request) {
     const quiz = JSON.parse(quizResponse.response.text());
 
     await connectDB();
-    await Block.create({ blockId, createdBy, topic, difficulty, outline: outline, quiz: quiz });
+    await Block.create({ createdBy, topic, difficulty, outline: outline, quiz: quiz });
     return NextResponse.json({ message: "Block Created" }, { status: 201 });
 }
 

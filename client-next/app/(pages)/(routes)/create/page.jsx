@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react'
 import BlockInput from '../../_components/BlockInput'
-import { v4 as uuidv4 } from 'uuid'
 import { useUser } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
@@ -28,9 +27,7 @@ const CreatePage = () => {
     setIsLoading(true);
 
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
-    const blockId = uuidv4();
-    const userId = user?.id;
-    
+    const userId = user.id;
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -38,7 +35,6 @@ const CreatePage = () => {
           'Content-type': 'application/json',
         },
         body: JSON.stringify({
-          blockId: blockId,
           createdBy: userId,
           topic: formData.topic,
           difficulty: formData.difficulty,
@@ -51,6 +47,8 @@ const CreatePage = () => {
     } catch (error) {
       throw new Error(`Failed to create block: ${error}`);
     }
+
+    router.push('/dashboard');
 
     return new Response('Block created', { status: 201 });
   }

@@ -5,6 +5,7 @@ import BlockInput from '../../_components/BlockInput'
 import { useUser } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
+import { v4 as uuidv4 } from 'uuid'
 
 const CreatePage = () => {
   const [formData, setFormData] = useState([]);
@@ -28,6 +29,8 @@ const CreatePage = () => {
 
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
     const userId = user.id;
+    const blockId = uuidv4();
+
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -35,6 +38,7 @@ const CreatePage = () => {
           'Content-type': 'application/json',
         },
         body: JSON.stringify({
+          blockId: blockId,
           createdBy: userId,
           topic: formData.topic,
           difficulty: formData.difficulty,
@@ -44,11 +48,26 @@ const CreatePage = () => {
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
+
+      router.push('/dashboard');
+
+      const quiz = await fetch(`${url}?blockId=${blockId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          topic: formData.topic,
+          difficulty: formData.difficulty,
+        }),
+      });
+
+      if (!quiz.ok) {
+        throw new Error(`Response status: ${quiz.status}`);
+      }
     } catch (error) {
       throw new Error(`Failed to create block: ${error}`);
     }
-
-    router.push('/dashboard');
 
     return new Response('Block created', { status: 201 });
   }
@@ -62,7 +81,7 @@ const CreatePage = () => {
             setDifficulty={(value) => handleInput('difficulty', value)}
           />
           {(isLoading) ? (
-            <Button disabled className='w-24 mt-6'>Please wait...</Button>
+            <Button disabled className='w-24 mt-6'>Loading...</Button>
           ) : (
             <Button className='w-24 mt-6' onClick={generateBlock}>Generate</Button>
           )}

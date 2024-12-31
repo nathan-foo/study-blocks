@@ -28,7 +28,7 @@ const Navbar = () => {
             <div className='w-full flex items-center'>
                 <Link href='/'>
                     <p className='text-sm uppercase'>
-                        <b>Learn Daily</b>
+                        <b>Study Blocks</b>
                     </p>
                 </Link>
             </div>

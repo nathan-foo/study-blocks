@@ -50,7 +50,7 @@ export default function Home() {
         </div>
         <div className="flex items-center justify-center">
           <p className="text-center pt-6 w-full md:text-lg md:px-16 lg:px-32">
-            Whether you're studying for exams, prepping for an interview, or learning a new web framework, LearnDaily has you covered. And the best part? All of this is generated instantly with the power of AI.
+            Whether you're studying for exams, prepping for an interview, or learning a new web framework, Study Blocks has you covered. And the best part? All of this is generated instantly with the power of AI.
           </p>
         </div>
         <div className="flex flex-col items-center justify-center text-center py-16">

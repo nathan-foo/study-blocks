@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
@@ -52,9 +53,9 @@ const ReviewPage = () => {
         fetchData();
     }, []);
     return (
-        <div className='py-16'>
-            {block && (
-                <div className='px-16 md:px-32'>
+        <div className='py-16 px-16 md:px-32'>
+            {block ? (
+                <div>
                     <div className='pt-12 font-black text-4xl'>
                         {block.outline.courseTitle}
                     </div>
@@ -92,6 +93,21 @@ const ReviewPage = () => {
                         >
                             Next
                         </Button>
+                    </div>
+                </div>
+            ) : (
+                <div className='pt-12 flex flex-col gap-y-4'>
+                    <div className='p-4 flex flex-col gap-4 items-center justify-center'>
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
                     </div>
                 </div>
             )}

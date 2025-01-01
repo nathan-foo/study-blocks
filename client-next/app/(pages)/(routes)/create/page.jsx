@@ -28,7 +28,7 @@ const CreatePage = () => {
     setIsLoading(true);
 
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
-    const userId = user.id;
+    const userId = user?.id;
     const blockId = uuidv4();
 
     try {

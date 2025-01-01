@@ -11,7 +11,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!isLoaded || !isSignedIn || !user) return;
+      if (!user) return;
 
       const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks?createdBy=${user.id}`;
 
@@ -27,11 +27,11 @@ const DashboardPage = () => {
         const data = await response.json();
         setBlocks(data.blocks);
       } catch (error) {
-        throw new Error(`Failed to create block: ${error}`);
+        throw new Error(`Failed to get block: ${error}`);
       }
     }
     fetchData();
-  }, [isLoaded, isSignedIn, user]);
+  }, [user]);
 
   return (
     <div className="pt-16">

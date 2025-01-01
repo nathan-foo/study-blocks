@@ -14,8 +14,8 @@ export default function Home() {
     <div className="pt-16">
       <div className="hero-section relative bg-[url('/images/home-bg.svg')] bg-center h-screen">
         <div className="absolute w-[75%] lg:w-[65%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <p className="font-black text-4xl md:text-5xl text-center leading-tight">
-            Building collaborative study habits, one block at a time.
+          <p className="font-black text-4xl md:text-6xl text-center leading-tight">
+            Study Blocks!
           </p>
           <p className="text-center pt-6 md:text-lg">
             And here is some smaller bottom text.

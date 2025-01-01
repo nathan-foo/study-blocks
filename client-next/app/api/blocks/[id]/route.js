@@ -9,11 +9,12 @@ export async function PUT(request, { params }) {
         newTopic: topic,
         newDifficulty: difficulty,
         newOutline: outline,
+        newFlashcards: flashcards,
         newQuiz: quiz,
     } = await request.json();
 
     await connectDB();
-    await Block.findByIdAndUpdate(id, { createdBy, topic, difficulty, outline, quiz });
+    await Block.findByIdAndUpdate(id, { createdBy, topic, difficulty, outline, flashcards, quiz });
     return NextResponse.json({ message: "Block Updated" }, { status: 200 });
 }
 

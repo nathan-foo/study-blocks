@@ -3,6 +3,7 @@ import connectDB from "@/lib/mongodb";
 import Block from "@/models/block";
 import { courseOutline } from "@/models/course";
 import { quizOutline } from "@/models/quiz";
+import { flashcardOutline } from "@/models/flashcards";
 
 export async function POST(request) {
     const { blockId, createdBy, topic, difficulty } = await request.json();
@@ -38,8 +39,13 @@ export async function PATCH(request) {
     const quizResponse = await quizOutline.sendMessage(QUIZ_PROMPT);
     const quiz = JSON.parse(quizResponse.response.text());
 
+    const FLASHCARD_PROMPT = `Generate study flashcards for a ${topic} review. The level of difficulty will be ${difficulty}. Each flashcard will have a question and an answer. Write all results in JSON format. Copy the following structure:\nset:\n[\n{\nquestion: string,\nanswer: string,\n}\n]`;
+
+    const flashcardResponse = await flashcardOutline.sendMessage(FLASHCARD_PROMPT);
+    const flashcards = JSON.parse(flashcardResponse.response.text());
+
     await connectDB();
-    await Block.findOneAndUpdate({ blockId: blockId }, { quiz: quiz });
+    await Block.findOneAndUpdate({ blockId: blockId }, { flashcards: flashcards, quiz: quiz });
     return NextResponse.json({ message: "Block Updated" }, { status: 200 });
 }
 

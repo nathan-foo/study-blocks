@@ -7,6 +7,7 @@ const schema = new Schema(
         topic: String,
         difficulty: String,
         outline: Object,
+        flashcards: Object,
         quiz: Object,
     }
 );

@@ -1,11 +1,15 @@
 "use client"
 
 import { UploadButton } from '@/lib/uploadthing';
-import React, { useState } from 'react'
+import { courseOutlineFromPdf } from '@/models/course-pdf';
+import React from 'react';
+import { toast } from 'react-toastify';
 
 const UploadPage = () => {
-  const generateBlockPdf = () => {
-    console.log('Button clicked');
+  const generateBlockPdf = async (res) => {
+    const pdfUrl = res[0].appUrl;
+    const result = await courseOutlineFromPdf(pdfUrl);
+    console.log(result.response.text());
   }
 
   return (
@@ -14,11 +18,10 @@ const UploadPage = () => {
         <UploadButton
           endpoint="blockPdf"
           onClientUploadComplete={(res) => {
-            console.log("Url: ", res[0].appUrl);
-            alert("Upload Completed");
+            generateBlockPdf(res);
           }}
           onUploadError={(error) => {
-            alert(`ERROR! ${error.message}`);
+            toast("Something went wrong.")
           }}
         />
       </div>

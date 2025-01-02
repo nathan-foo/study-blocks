@@ -6,16 +6,14 @@ import { useUser } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
+import { UploadButton } from '@/lib/uploadthing'
+import { toast } from 'react-toastify'
 
 const CreatePage = () => {
   const [formData, setFormData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { isLoaded, isSignedIn, user } = useUser();
   const router = useRouter();
-
-  const handlePdf = () => {
-    router.push('/create/upload');
-  }
 
   const handleInput = (fieldName, fieldValue) => {
     setFormData(prev => ({
@@ -55,7 +53,9 @@ const CreatePage = () => {
 
       router.push('/dashboard');
 
-      const quiz = await fetch(`${url}?blockId=${blockId}`, {
+      toast("Some materials are still being generated.");
+
+      const patch = await fetch(`${url}?blockId=${blockId}`, {
         method: 'PATCH',
         headers: {
           'Content-type': 'application/json',
@@ -66,8 +66,62 @@ const CreatePage = () => {
         }),
       });
 
-      if (!quiz.ok) {
-        throw new Error(`Response status: ${quiz.status}`);
+      if (!patch.ok) {
+        throw new Error(`Response status: ${patch.status}`);
+      }
+    } catch (error) {
+      throw new Error(`Failed to create block: ${error}`);
+    }
+
+    return new Response('Block created', { status: 201 });
+  }
+
+  const generateBlockPdf = async (res) => {
+    setIsLoading(true);
+    
+    const pdfUrl = res[0].appUrl;
+
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
+    const userId = user?.id;
+    const blockId = uuidv4();
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          blockId: blockId,
+          createdBy: userId,
+          topic: 'Custom',
+          difficulty: 'Custom',
+          url: pdfUrl,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      router.push('/dashboard');
+
+      toast("Some materials are still being generated.");
+
+      const patch = await fetch(`${url}?blockId=${blockId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          topic: 'Custom',
+          difficulty: 'Custom',
+          url: pdfUrl,
+        }),
+      });
+
+      if (!patch.ok) {
+        throw new Error(`Response status: ${patch.status}`);
       }
     } catch (error) {
       throw new Error(`Failed to create block: ${error}`);
@@ -89,8 +143,17 @@ const CreatePage = () => {
           ) : (
             <Button className='w-24 mt-6' onClick={generateBlock}>Generate</Button>
           )}
-          <div>
-            <Button className='w-40 mt-6' onClick={handlePdf}>Generate from PDF</Button>
+          <div className='text-center'>
+            <p className='font-bold py-4'>Or upload a pdf</p>
+            <UploadButton
+              endpoint="blockPdf"
+              onClientUploadComplete={(res) => {
+                generateBlockPdf(res);
+              }}
+              onUploadError={(error) => {
+                toast("Something went wrong.")
+              }}
+            />
           </div>
         </div>
       </div>

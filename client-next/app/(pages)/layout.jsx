@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import Navbar from "./_components/Navbar";
 
 const PageLayout = ({ children }) => {
@@ -6,6 +7,7 @@ const PageLayout = ({ children }) => {
             <main>
                 <Navbar />
                 {children}
+                <ToastContainer />
             </main>
         </div>
      );

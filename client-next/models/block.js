@@ -9,6 +9,7 @@ const schema = new Schema(
         outline: Object,
         flashcards: Object,
         quiz: Object,
+        url: String,
     }
 );
 

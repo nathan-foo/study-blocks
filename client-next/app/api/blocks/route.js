@@ -8,7 +8,7 @@ import { flashcardOutline } from "@/models/flashcards";
 export async function POST(request) {
     const { blockId, createdBy, topic, difficulty } = await request.json();
     
-    const COURSE_PROMPT = `Generate study material for a ${topic} review. The level of difficulty will be ${difficulty}. Write a summary of each course, a list of chapters along with a summary for each chapter, and a topic list in each chapter. For each topic, generate relevant notes. Write all results in JSON format. Copy the following structure:\n{\ncourseTitle: string,\nsummary: string,\nchapters:\n[\n{\nchapterTitle: string,\nsummary: string,\ntopics:\n[\n{\ntopic: string,\nnotes: string,\n]\n}\n]\n}`;
+    const COURSE_PROMPT = `Generate study material for a ${topic} review. The level of difficulty will be ${difficulty}. Write a summary of the course, a list of chapters along with a summary for each chapter, and a topic list in each chapter. For each topic, generate relevant notes. Write all results in JSON format. Copy the following structure:\n{\ncourseTitle: string,\nsummary: string,\nchapters:\n[\n{\nchapterTitle: string,\nsummary: string,\ntopics:\n[\n{\ntopic: string,\nnotes: string,\n]\n}\n]\n}`;
 
     const courseResponse = await courseOutline.sendMessage(COURSE_PROMPT);
     const outline = JSON.parse(courseResponse.response.text());

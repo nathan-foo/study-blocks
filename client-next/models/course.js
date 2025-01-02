@@ -25,7 +25,7 @@ export const courseOutline = model.startChat({
         {
             role: "user",
             parts: [
-                { text: "Generate study material for a DATA STRUCTURES review. The level of difficulty will be EASY. Write a summary of each course, a list of chapters along with a summary for each chapter, and a topic list in each chapter. For each topic, generate relevant notes. Write all results in JSON format. Copy the following structure:\n{\ncourseTitle: string,\nsummary: string,\nchapters:\n[\n{\nchapterTitle: string,\nsummary: string,\ntopics:\n[\n{\ntopic: string,\nnotes: string,\n]\n}\n]\n}" },
+                { text: "Generate study material for a DATA STRUCTURES review. The level of difficulty will be EASY. Write a summary of the course, a list of chapters along with a summary for each chapter, and a topic list in each chapter. For each topic, generate relevant notes. Write all results in JSON format. Copy the following structure:\n{\ncourseTitle: string,\nsummary: string,\nchapters:\n[\n{\nchapterTitle: string,\nsummary: string,\ntopics:\n[\n{\ntopic: string,\nnotes: string,\n]\n}\n]\n}" },
             ],
         },
         {
@@ -37,7 +37,7 @@ export const courseOutline = model.startChat({
         {
             role: "user",
             parts: [
-                { text: "Generate study material for a ENGLISH review. The level of difficulty will be MEDIUM. Write a summary of each course, a list of chapters along with a summary for each chapter, and a topic list in each chapter. For each topic, generate relevant notes. Write all results in JSON format. Copy the following structure:\n{\ncourseTitle: string,\nsummary: string,\nchapters:\n[\n{\nchapterTitle: string,\nsummary: string,\ntopics:\n[\n{\ntopic: string,\nnotes: string,\n]\n}\n]\n}" },
+                { text: "Generate study material for a ENGLISH review. The level of difficulty will be MEDIUM. Write a summary of the course, a list of chapters along with a summary for each chapter, and a topic list in each chapter. For each topic, generate relevant notes. Write all results in JSON format. Copy the following structure:\n{\ncourseTitle: string,\nsummary: string,\nchapters:\n[\n{\nchapterTitle: string,\nsummary: string,\ntopics:\n[\n{\ntopic: string,\nnotes: string,\n]\n}\n]\n}" },
             ],
         },
         {
@@ -49,7 +49,7 @@ export const courseOutline = model.startChat({
         {
             role: "user",
             parts: [
-                { text: "Generate study material for a CALCULUS review. The level of difficulty will be HARD. Write a summary of each course, a list of chapters along with a summary for each chapter, and a topic list in each chapter. For each topic, generate relevant notes. Write all results in JSON format. Copy the following structure:\n{\ncourseTitle: string,\nsummary: string,\nchapters:\n[\n{\nchapterTitle: string,\nsummary: string,\ntopics:\n[\n{\ntopic: string,\nnotes: string,\n]\n}\n]\n}" },
+                { text: "Generate study material for a CALCULUS review. The level of difficulty will be HARD. Write a summary of the course, a list of chapters along with a summary for each chapter, and a topic list in each chapter. For each topic, generate relevant notes. Write all results in JSON format. Copy the following structure:\n{\ncourseTitle: string,\nsummary: string,\nchapters:\n[\n{\nchapterTitle: string,\nsummary: string,\ntopics:\n[\n{\ntopic: string,\nnotes: string,\n]\n}\n]\n}" },
             ],
         },
         {

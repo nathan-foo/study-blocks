@@ -2,7 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
 export const metadata = {
-  title: "Learn Daily Prototype",
+  title: "Study Blocks Prototype",
   description: "An AI-powered LMS app for reviewing study material.",
 };
 

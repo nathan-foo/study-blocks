@@ -2,7 +2,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea'
 import React from 'react'
 
-const BlockInput = ({ setTopic, setDifficulty }) => {
+const TextInput = ({ setTopic, setDifficulty }) => {
   return (
     <div className='flex flex-col gap-2'>
         <h2 className='font-bold'>Subject</h2>
@@ -24,4 +24,4 @@ const BlockInput = ({ setTopic, setDifficulty }) => {
   )
 }
 
-export default BlockInput
+export default TextInput

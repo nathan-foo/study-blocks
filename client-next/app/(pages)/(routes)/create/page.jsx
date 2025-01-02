@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
-import BlockInput from '../../_components/BlockInput'
+import TextInput from '../../_components/TextInput'
 import { useUser } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
@@ -12,6 +12,10 @@ const CreatePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { isLoaded, isSignedIn, user } = useUser();
   const router = useRouter();
+
+  const handlePdf = () => {
+    router.push('/create/upload');
+  }
 
   const handleInput = (fieldName, fieldValue) => {
     setFormData(prev => ({
@@ -75,8 +79,8 @@ const CreatePage = () => {
   return (
     <div className='pt-16'>
       <div className='flex items-center justify-center'>
-        <div className='w-[60%] mt-[15%]'>
-          <BlockInput
+        <div className='w-[60%] mt-[10%]'>
+          <TextInput
             setTopic={(value) => handleInput('topic', value)}
             setDifficulty={(value) => handleInput('difficulty', value)}
           />
@@ -85,6 +89,9 @@ const CreatePage = () => {
           ) : (
             <Button className='w-24 mt-6' onClick={generateBlock}>Generate</Button>
           )}
+          <div>
+            <Button className='w-40 mt-6' onClick={handlePdf}>Generate from PDF</Button>
+          </div>
         </div>
       </div>
     </div>

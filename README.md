@@ -1,1 +1,1 @@
-# sb-proof-of-concept
+# lms-poc

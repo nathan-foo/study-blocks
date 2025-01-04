@@ -32,7 +32,7 @@ const model = genAI.getGenerativeModel({
 });
 
 export const quizOutlineFromPdf = async (pdfUrl) => {
-    const PROMPT = 'Generate quiz questions and answers for review based on this document. Each question will have four answer choices with one correct answer. Write all results in JSON format. Copy the following structure:\nquestions:\n[\n{\nquestion: string,\nanswers:\n[\n{\nanswer: string,\ncorrect: boolean,\n}\n]\n}\n]'
+    const PROMPT = 'Generate quiz questions and answers for review based on this document. Each question will have four answer choices with one correct answer. Make sure to cover every topic in the document. Do not use HTML properties or formatting. Use underscores for subscripts and ^ for superscripts if needed. Write all results in JSON format. Copy the following structure:\nquestions:\n[\n{\nquestion: string,\nanswers:\n[\n{\nanswer: string,\ncorrect: boolean,\n}\n]\n}\n]'
 
     const pdfResp = await fetch(pdfUrl)
         .then((response) => response.arrayBuffer());

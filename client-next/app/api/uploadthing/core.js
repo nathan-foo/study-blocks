@@ -5,7 +5,7 @@ const f = createUploadthing();
 export const ourFileRouter = {
     blockPdf: f({
         pdf: {
-            maxFileSize: "10MB",
+            maxFileSize: "12MB",
             maxFileCount: 1,
         }
     })

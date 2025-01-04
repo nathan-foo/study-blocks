@@ -42,12 +42,12 @@ const FlashcardPage = () => {
   return (
     <div>
       {/* {block && (JSON.stringify(block.flashcards.set))} */}
-      {block ? (
+      {(block && block.flashcards) ? (
         <div className='flex items-center justify-center h-screen'>
           <div className='w-[50%]'>
             <Carousel opts={{ loop: true }}>
               <CarouselContent >
-                {block.flashcards.set.map((flashcard, index) => (
+                {block.flashcards?.set.map((flashcard, index) => (
                   <CarouselItem key={index} className='flex items-center justify-center'>
                     <div className='px-16 py-32 border rounded-lg text-center text-lg'>
                       <p>

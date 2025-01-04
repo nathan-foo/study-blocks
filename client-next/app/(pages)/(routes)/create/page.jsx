@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
 import { UploadButton } from '@/lib/uploadthing'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 
 const CreatePage = () => {
   const [formData, setFormData] = useState([]);
@@ -28,6 +28,10 @@ const CreatePage = () => {
     }
 
     setIsLoading(true);
+
+    toast.success('Your content is being generated. Please do not refresh this page.', {
+      duration: 10000,
+    });
 
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
     const userId = user?.id;
@@ -53,7 +57,9 @@ const CreatePage = () => {
 
       router.push('/dashboard');
 
-      // toast("Some materials are still being generated.");
+      toast.success('Some course materials are still being generated.', {
+        duration: 5000,
+      });
 
       const patch = await fetch(`${url}?blockId=${blockId}`, {
         method: 'PATCH',
@@ -78,6 +84,10 @@ const CreatePage = () => {
 
   const generateBlockPdf = async (res) => {
     setIsLoading(true);
+
+    toast.success('Your content is being generated. Please do not refresh this page.', {
+      duration: 10000,
+    });
     
     const pdfUrl = res[0].appUrl;
 
@@ -106,7 +116,9 @@ const CreatePage = () => {
 
       router.push('/dashboard');
 
-      // toast("Some materials are still being generated.");
+      toast.success('Some course materials are still being generated.', {
+        duration: 5000,
+      });
 
       const patch = await fetch(`${url}?blockId=${blockId}`, {
         method: 'PATCH',
@@ -139,7 +151,7 @@ const CreatePage = () => {
             setDifficulty={(value) => handleInput('difficulty', value)}
           />
           {(isLoading) ? (
-            <Button disabled className='w-24 mt-6'>Loading...</Button>
+            <Button disabled className='w-24 mt-6'>Generate</Button>
           ) : (
             <Button className='w-24 mt-6' onClick={generateBlock}>Generate</Button>
           )}
@@ -151,7 +163,7 @@ const CreatePage = () => {
                 generateBlockPdf(res);
               }}
               onUploadError={(error) => {
-                toast("Something went wrong.")
+                toast.error('Something went wrong.')
               }}
             />
           </div>

@@ -1,13 +1,13 @@
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 import Navbar from "./_components/Navbar";
 
 const PageLayout = ({ children }) => {
     return ( 
         <div>
             <main>
+                <Toaster />
                 <Navbar />
                 {children}
-                <ToastContainer />
             </main>
         </div>
      );

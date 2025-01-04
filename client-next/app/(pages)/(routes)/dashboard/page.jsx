@@ -45,7 +45,7 @@ const DashboardPage = () => {
               <Link key={index} href={`/dashboard/${block._id}`}>
                 <div className='p-4 border rounded'>
                   <h3 className='font-bold'>{block.outline.courseTitle || 'Untitled Block'}</h3>
-                  <p>{block.difficulty || 'No Difficulty'}</p>
+                  <p>Difficulty: {block.difficulty || 'No Difficulty'}</p>
                 </div>
               </Link>
             ))}

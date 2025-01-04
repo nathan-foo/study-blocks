@@ -32,7 +32,7 @@ const model = genAI.getGenerativeModel({
 });
 
 export const flashcardOutlineFromPdf = async (pdfUrl) => {
-    const PROMPT = 'Generate flashcards for review based on this document. Each flashcard will have a question and an answer. Write all results in JSON format. Copy the following structure:\nset:\n[\n{\nquestion: string,\nanswer: string,\n}\n]'
+    const PROMPT = 'Generate flashcards for review based on this document. Each flashcard will have a question and an answer. Make enough flashcards to cover every topic in the document. Do not use HTML properties or formatting. Use underscores for subscripts and ^ for superscripts if needed. Write all results in JSON format. Copy the following structure:\nset:\n[\n{\nquestion: string,\nanswer: string,\n}\n]'
 
     const pdfResp = await fetch(pdfUrl)
         .then((response) => response.arrayBuffer());

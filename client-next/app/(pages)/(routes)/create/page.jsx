@@ -53,7 +53,7 @@ const CreatePage = () => {
 
       router.push('/dashboard');
 
-      toast("Some materials are still being generated.");
+      // toast("Some materials are still being generated.");
 
       const patch = await fetch(`${url}?blockId=${blockId}`, {
         method: 'PATCH',
@@ -106,7 +106,7 @@ const CreatePage = () => {
 
       router.push('/dashboard');
 
-      toast("Some materials are still being generated.");
+      // toast("Some materials are still being generated.");
 
       const patch = await fetch(`${url}?blockId=${blockId}`, {
         method: 'PATCH',

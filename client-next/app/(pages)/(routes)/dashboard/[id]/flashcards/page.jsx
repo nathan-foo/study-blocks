@@ -1,6 +1,12 @@
 "use client"
 
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from '@/components/ui/carousel';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
@@ -36,13 +42,13 @@ const FlashcardPage = () => {
   return (
     <div>
       {/* {block && (JSON.stringify(block.flashcards.set))} */}
-      {block && (
+      {block ? (
         <div className='flex items-center justify-center h-screen'>
           <div className='w-[50%]'>
             <Carousel opts={{ loop: true }}>
-              <CarouselContent>
+              <CarouselContent >
                 {block.flashcards.set.map((flashcard, index) => (
-                  <CarouselItem key={index}>
+                  <CarouselItem key={index} className='flex items-center justify-center'>
                     <div className='px-16 py-32 border rounded-lg text-center text-lg'>
                       <p>
                         <b>Q:</b> {flashcard.question}
@@ -58,6 +64,10 @@ const FlashcardPage = () => {
               <CarouselNext />
             </Carousel>
           </div>
+        </div>
+      ) : (
+        <div className='flex items-center justify-center h-screen text-center'>
+          Loading content...
         </div>
       )}
     </div>

@@ -34,7 +34,16 @@ const QuizPage = () => {
 
   return (
     <div className='pt-16'>
-      {block && (JSON.stringify(block.quiz.questions))}
+      {(block && block.quiz) ? (
+        <div>
+          <div className='font-bold text-lg text-center'>Quiz Code: {block.blockId}</div>
+          <div className='pt-2'>({JSON.stringify(block.quiz.questions)})</div>
+        </div>
+      ) : (
+        <div className='flex items-center justify-center h-screen text-center'>
+          Loading content...
+        </div>
+      )}
     </div>
   )
 }

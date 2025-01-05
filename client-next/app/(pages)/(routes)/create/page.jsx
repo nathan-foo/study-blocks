@@ -5,9 +5,9 @@ import TextInput from '../../_components/TextInput'
 import { useUser } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
-import { v4 as uuidv4 } from 'uuid'
 import { UploadButton } from '@/lib/uploadthing'
 import toast from 'react-hot-toast'
+import ShortUniqueId from 'short-unique-id'
 
 const CreatePage = () => {
   const [formData, setFormData] = useState([]);
@@ -35,7 +35,8 @@ const CreatePage = () => {
 
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
     const userId = user?.id;
-    const blockId = uuidv4();
+    const { randomUUID } = new ShortUniqueId({ dictionary: 'number', length: 7 });
+    const blockId = randomUUID();
 
     try {
       const response = await fetch(url, {
@@ -93,7 +94,9 @@ const CreatePage = () => {
 
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
     const userId = user?.id;
-    const blockId = uuidv4();
+
+    const { randomUUID } = new ShortUniqueId({ dictionary: 'number', length: 7 });
+    const blockId = randomUUID();
 
     try {
       const response = await fetch(url, {

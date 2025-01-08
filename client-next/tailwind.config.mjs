@@ -11,6 +11,9 @@ const config = withUt({
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			'magical-childhood': ['magical-childhood', 'sans-serif'],
+		},
   		colors: {
   			background: 'var(--background)',
   			foreground: 'var(--foreground)'

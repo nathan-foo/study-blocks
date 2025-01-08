@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: 'magical-childhood';
+    src: url('/fonts/MagicalChildhood-Rprjl.ttf') format('truetype');
+  }
+
   :root {
     --radius: 0.5rem
   }

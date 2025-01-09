@@ -31,10 +31,13 @@ export async function POST(request) {
 }
 
 export async function GET(request) {
-    const createdBy = request.nextUrl.searchParams.get("createdBy");
+    const url = request.nextUrl;
+    const createdBy = url.searchParams.get("createdBy");
+    const blockId = url.searchParams.get("blockId");
 
     const query = {};
     if (createdBy) query.createdBy = createdBy;
+    if (blockId) query.blockId = blockId;
 
     await connectDB();
 

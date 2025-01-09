@@ -26,7 +26,7 @@ const QuizPage = () => {
         const data = await response.json();
         setBlock(data.block);
       } catch (error) {
-        throw new Error(`Failed to create block: ${error}`);
+        throw new Error(`Failed to get block: ${error}`);
       }
     }
     fetchData();

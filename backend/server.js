@@ -10,22 +10,24 @@ app.use(cors);
 
 const io = socketIo(server, {
     cors: {
-        origin: "http://localhost:3000/play",
+        origin: "http://localhost:3000", // TODO update route for production
         methods: ["GET", "POST"],
     }
 });
 
 io.on('connection', (socket) => {
-    console.log('User connected');
-})
+    console.log(`User connected: ${socket.id}`);  
+    socket.on('getQuestions', (questions) => {
+        console.log(questions);
+    });
 
-const PORT = 8000;
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    })
+});
 
-// Sends to localhost:8000
-// app.get('/', (req, res) => {
-//     res.send('<h1>Hello world</h1>  ');
-// });
+const PORT = process.env.PORT || 8000;
 
 server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });

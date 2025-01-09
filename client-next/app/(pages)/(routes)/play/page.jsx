@@ -44,7 +44,7 @@ const PlayPage = () => {
       }
 
       const questions = data.blocks[0].quiz.questions;
-      socket.emit('getQuestions', questions);
+      socket.emit('joinRoom', name, room, questions);
       setJoined(true);
     } catch (error) {
       throw new Error(`Failed to get block: ${error}`);

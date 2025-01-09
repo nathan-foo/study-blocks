@@ -17,7 +17,9 @@ const io = socketIo(server, {
 
 io.on('connection', (socket) => {
     console.log(`User connected: ${socket.id}`);  
-    socket.on('getQuestions', (questions) => {
+    socket.on('joinRoom', (name, room, questions) => {
+        console.log(name);
+        console.log(room);
         console.log(questions);
     });
 

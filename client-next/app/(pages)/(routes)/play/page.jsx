@@ -4,26 +4,41 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
-import { io } from 'socket.io-client'
+import { io } from 'socket.io-client';
 
 let socket;
 
 const PlayPage = () => {
+  const [joined, setJoined] = useState(false);
+  const [room, setRoom] = useState("");
+  const [name, setName] = useState("");
+  const [players, setPlayers] = useState([]);
+
   useEffect(() => {
     socket = io('ws://localhost:8000'); // TODO update route for production
+
+    socket.on('invalidName', () => {
+      toast.error('Sorry, this name is taken');
+    });
+
+    socket.on('userJoinToast', (user, players) => {
+      toast.success(`${user} joined the game`);
+      setPlayers(players);
+      setJoined(true);
+    });
+
+    socket.on('userLeave', (players) => {
+      setPlayers(players);
+    });
+
     return () => {
       if (socket) socket.disconnect();
     };
   }, []);
 
-  const [joined, setJoined] = useState(false);
-  const [room, setRoom] = useState("");
-  const [name, setName] = useState("");
-
   const handleJoin = async () => {
     if (!room || !name) {
-      toast.error('Please enter your name and game code');
-      return;
+      return toast.error('Please enter your name and game code');
     }
 
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks?blockId=${room}`;
@@ -44,8 +59,7 @@ const PlayPage = () => {
       }
 
       const questions = data.blocks[0].quiz.questions;
-      socket.emit('joinRoom', name, room, questions);
-      setJoined(true);
+      socket.emit('userJoin', name, room, questions);
     } catch (error) {
       throw new Error(`Failed to get block: ${error}`);
     }
@@ -63,8 +77,9 @@ const PlayPage = () => {
         </div>
       ) : (
         <div className='flex flex-col items-center justify-center h-screen'>
-          <p>Name: {name}</p>
-          <p>Room code: {room}</p>
+          <div>Name: {name}</div>
+          <div>Room code: {room}</div>
+          <div>Players: {players.map((player, index) => (<div key={index}>{player}</div>))}</div>
         </div>
       )}
     </div>

@@ -6,9 +6,10 @@ const cors = require('cors');
 const app = express();
 const server = createServer(app);
 
-app.use(cors);
+app.use(cors());
 
 const io = socketIo(server, {
+    connectionStateRecovery: {},
     cors: {
         origin: "http://localhost:3000", // TODO update route for production
         methods: ["GET", "POST"],

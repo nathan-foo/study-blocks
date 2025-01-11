@@ -20,6 +20,7 @@ const PlayPage = () => {
   const [questionNumber, setQuestionNumber] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [waiting, setWaiting] = useState(false);
+  const [leaderboard, setLeaderboard] = useState(false);
 
   useEffect(() => {
     socket = io('ws://localhost:8000'); // TODO update route for production
@@ -42,11 +43,12 @@ const PlayPage = () => {
 
     // Update players when user leaves
     socket.on('userLeave', (players) => {
-      setPlayers(players);
+      const sortedPlayers = players.sort((a, b) => b.points - a.points);
+      setPlayers(sortedPlayers);
     });
 
     // Handle game start
-    socket.on('gameStarted', () => {
+    socket.on('setGameStart', () => {
       setStarted(true);
     });
 
@@ -55,19 +57,26 @@ const PlayPage = () => {
       setQuestion(question);
       setAnswers(answers);
       setQuestionNumber(questionNumber);
+      setLeaderboard(false);
     });
 
     // Handle question ending
     socket.on('endQuestion', (players) => {
+      const sortedPlayers = players.sort((a, b) => b.points - a.points);
+      setPlayers(sortedPlayers);
       setQuestion("");
-      setPlayers(players);
       setWaiting(false);
+    });
+
+    socket.on('setLeaderboard', () => {
+      setLeaderboard(true);
     });
 
     // Handle game ending
     socket.on('endGame', (players) => {
+      const sortedPlayers = players.sort((a, b) => b.points - a.points);
+      setPlayers(sortedPlayers);
       setQuestion("");
-      setPlayers(players);
       setEnded(true);
     });
 
@@ -114,6 +123,10 @@ const PlayPage = () => {
     setWaiting(true);
   }
 
+  const handleLeaderboard = () => {
+    socket.emit('showLeaderboard', room);
+  }
+
   const handleNextQuestion = () => {
     socket.emit('nextQuestion', room);
   }
@@ -134,7 +147,7 @@ const PlayPage = () => {
             <div className='flex flex-col items-center justify-center h-screen'>
               <div>Name: {name}</div>
               <div>Room code: {room}</div>
-              <div>Players: {players.map((player, index) => (<div key={index}>{player.name}: {player.points}</div>))}</div>
+              <div>Players: {players.map((player, index) => (<div key={index}>{player.name}</div>))}</div>
               <Button className='mt-2' onClick={handleStart}>Start Game</Button>
             </div>
           ) : (
@@ -153,7 +166,7 @@ const PlayPage = () => {
                           {ans.answer}
                         </button>
                       ))}
-                      <Countdown date={Date.now() + 10000} />
+                      <Countdown date={Date.now() + 20000} />
                     </div>
                   ) : (
                     <div>Waiting...</div>
@@ -162,28 +175,35 @@ const PlayPage = () => {
               ) : (
                 <div className='w-[60%]'>
                   {!ended ? (
-                    <div className='flex flex-col gap-4'>
-                      <div className='font-bold'>Question ended</div>
-                      {answers.map((ans, index) => (
-                        <div
-                          key={index}
-                          className={`border rounded-lg py-2 px-4 ${ans.correct ? 'font-bold border-green-400' : 'border-red-400'}`}
-                        >
-                          {ans.answer}
+                    <div>
+                      {!leaderboard ? (
+                        <div>
+                          <div className='flex flex-col gap-4'>
+                            <div className='font-bold'>Question ended</div>
+                            {answers.map((ans, index) => (
+                              <div
+                                key={index}
+                                className={`border rounded-lg py-2 px-4 ${ans.correct ? 'font-bold border-green-400' : 'border-red-400'}`}
+                              >
+                                {ans.answer}
+                              </div>
+                            ))}
+                          </div>
+                          <Button onClick={handleLeaderboard} className='mt-4'>Continue</Button>
                         </div>
-                      ))}
-                      <button
-                        onClick={handleNextQuestion}
-                        className='border rounded-lg py-2 px-4 mt-4'
-                      >
-                        Continue
-                      </button>
-                      <div>Players: {players.map((player, index) => (<div key={index}>{player.name}: {player.points}</div>))}</div>
+                      ) : (
+                        <div>
+                          <div className='font-bold'>Leaderboard</div>
+                          <div>{players.map((player, index) => (<div key={index}>{index + 1}. {player.name}: {player.points} points</div>))}</div>
+                          <Button onClick={handleNextQuestion} className='mt-4'>Continue</Button>
+                        </div>
+                      )}
+
                     </div>
                   ) : (
                     <div>
                       <div className='font-bold'>Game ended</div>
-                      <div>Results: {players.map((player, index) => (<div key={index}>{player.name}: {player.points}</div>))}</div>
+                      <div>{players.map((player, index) => (<div key={index}>{index + 1}. {player.name}: {player.points} points</div>))}</div>
                     </div>
                   )}
                 </div>

@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
     // Handle game start
     socket.on('gameStart', (room) => {
         let game = games.find(game => game.id === room);
-        io.to(room).emit('gameStarted');
+        io.to(room).emit('setGameStart');
 
         const currentQuestion = game.questions[game.currentQuestion].question;
         const currentAnswers = game.questions[game.currentQuestion].answers;
@@ -93,6 +93,11 @@ io.on('connection', (socket) => {
             game.answers = 0;
             game.correctAnswers = 0;
         }
+    });
+
+    // Handle leaderboard
+    socket.on('showLeaderboard', (room) => {
+        io.to(room).emit('setLeaderboard');
     });
 
     // Handle new question request

@@ -74,7 +74,7 @@ io.on('connection', (socket) => {
             if (currentIndex === game.currentQuestion) {
                 io.to(room).emit('endQuestion', game.players);
             }
-        }, 10000);
+        }, 20000);
     });
 
     // Handle when a player answers
@@ -115,7 +115,7 @@ io.on('connection', (socket) => {
                 if (currentIndex === game.currentQuestion) {
                     io.to(room).emit('endQuestion', game.players);
                 }
-            }, 10000);
+            }, 20000);
         }
     });
 

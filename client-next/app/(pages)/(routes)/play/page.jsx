@@ -134,6 +134,7 @@ const PlayPage = () => {
   return (
     <div className='px-16 md:px-32 text-center'>
       {!joined ? (
+        // Join game screen
         <div className='flex flex-col gap-3 items-center justify-center h-screen'>
           <h1 className='font-bold text-xl'>Enter your name</h1>
           <Textarea className='w-96' placeholder='Type here...' onChange={(event) => setName(event.target.value)} />
@@ -144,6 +145,7 @@ const PlayPage = () => {
       ) : (
         <div>
           {!started ? (
+            // Waiting room screen
             <div className='flex flex-col items-center justify-center h-screen'>
               <div>Name: {name}</div>
               <div>Room code: {room}</div>
@@ -153,6 +155,7 @@ const PlayPage = () => {
           ) : (
             <div className='flex flex-col items-center justify-center h-screen'>
               {question ? (
+                // Question screen
                 <div className='w-[60%]'>
                   {!waiting ? (
                     <div className='flex flex-col gap-4'>
@@ -169,6 +172,7 @@ const PlayPage = () => {
                       <Countdown date={Date.now() + 20000} />
                     </div>
                   ) : (
+                    // Waiting for question to finish screen
                     <div>Waiting...</div>
                   )}
                 </div>
@@ -177,6 +181,7 @@ const PlayPage = () => {
                   {!ended ? (
                     <div>
                       {!leaderboard ? (
+                        // Answers screen
                         <div>
                           <div className='flex flex-col gap-4'>
                             <div className='font-bold'>Question ended</div>
@@ -192,6 +197,7 @@ const PlayPage = () => {
                           <Button onClick={handleLeaderboard} className='mt-4'>Continue</Button>
                         </div>
                       ) : (
+                        // Leaderboard after question screen
                         <div>
                           <div className='font-bold'>Leaderboard</div>
                           <div>{players.map((player, index) => (<div key={index}>{index + 1}. {player.name}: {player.points} points</div>))}</div>
@@ -201,6 +207,7 @@ const PlayPage = () => {
 
                     </div>
                   ) : (
+                    // Game end screen
                     <div>
                       <div className='font-bold'>Game ended</div>
                       <div>{players.map((player, index) => (<div key={index}>{index + 1}. {player.name}: {player.points} points</div>))}</div>

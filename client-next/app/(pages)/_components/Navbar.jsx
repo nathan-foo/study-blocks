@@ -23,28 +23,28 @@ const Navbar = () => {
     }, []);
 
   return (
-    <div className={`fixed bg-white top-0 left-0 w-full py-4 px-6 ${isScrolled ? 'shadow-md' : 'shadow-none'} transition-shadow duration-300 z-50`}>
+    <div className={`fixed bg-white top-0 left-0 w-full py-3 px-6 ${isScrolled ? 'shadow-md' : 'shadow-none'} transition-shadow duration-300 z-50`}>
         <div className='flex justify-between'>
             <div className='w-full flex items-center'>
                 <Link href='/'>
-                    <p className='text-sm uppercase'>
+                    <p className='text-sm text-blue-primary font-magical-childhood ml-3'>
                         <b>Study Blocks</b>
                     </p>
                 </Link>
             </div>
             <div className='container mx-auto flex items-center justify-end gap-x-3'>
                 <Link href='/play'>
-                    <Button size='sm' variant='ghost'>
+                    <Button variant='secondary'>
                         Play
                     </Button>
                 </Link>
                 <Link href='/create'>
-                    <Button size='sm' variant='ghost'>
+                    <Button variant='secondary'>
                         Create
                     </Button>
                 </Link>
                 <Link href='/dashboard'>
-                    <Button size='sm' variant='ghost'>
+                    <Button variant='secondary' className='mr-1'>
                         Dashboard
                     </Button>
                 </Link>
@@ -52,8 +52,8 @@ const Navbar = () => {
                     <UserButton />
                 ) : (
                     <Link href='sign-in'>
-                        <Button size='sm'>
-                            Sign In
+                        <Button>
+                            Log in
                         </Button>
                     </Link>
                 )}

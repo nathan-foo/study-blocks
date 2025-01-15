@@ -11,18 +11,44 @@ export default function Home() {
   const { user } = useUser();
 
   return (
-    <div className="pt-16">
-      <div className="hero-section relative h-screen">
-        <div className="absolute w-[75%] lg:w-[65%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <p className="font-magical-childhood text-3xl md:text-5xl text-center leading-tight">
-            Study Blocks!
-          </p>
-          <p className="text-center pt-12 md:text-lg">
-            And here is some smaller bottom text.
-          </p>
+    <div>
+      <div className="hero-section bg-slate-50 relative flex justify-center h-screen">
+        <div className="relative flex flex-col top-[130px] md:top-[150px] px-12 md:px-32">
+          <div className="font-bold text-4xl md:text-5xl text-center leading-normal">
+            Exams are stressful.
+          </div>
+          <div className="flex items-center justify-center">
+            <p className="text-center md:text-lg pt-6 lg:px-32 w-[80%]">
+              Don't waste time creating review material. Let us do the work, so you can focus on learning what matters.
+            </p>
+          </div>
+          <div className="flex items-center justify-center gap-6 py-8">
+            {user ? (
+              <div>
+                <Link href='/dashboard'>
+                  <Button size='lg'>
+                    Go to Dashboard
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              <>
+                <Link href='sign-in'>
+                  <Button size='lg' variant='outline'>
+                    Log in
+                  </Button>
+                </Link>
+                <Link href='sign-up'>
+                  <Button size='lg'>
+                    Create account
+                  </Button>
+                </Link>
+              </>
+            )}
+          </div>
         </div>
       </div>
-      <div className="body-section relative size-full px-8 md:px-16 lg:px-32">
+      <div className="body-section bg-pink-primary relative size-full px-8 md:px-16 lg:px-32">
         <div className="flex flex-col items-center justify-center text-center">
           <h2 className="font-black text-3xl md:text-4xl">
             What is a block?
@@ -54,7 +80,7 @@ export default function Home() {
           </p>
         </div>
         <div className="flex flex-col items-center justify-center text-center py-16">
-          <h2 className="font-black text-3xl md:text-4xl">
+          <h2 className="font-bold text-3xl md:text-4xl">
             Let's get started.
           </h2>
           <div className="flex items-center justify-center gap-8 pt-8">

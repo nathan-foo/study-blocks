@@ -16,7 +16,13 @@ const config = withUt({
 		},
   		colors: {
   			background: 'var(--background)',
-  			foreground: 'var(--foreground)'
+  			foreground: 'var(--foreground)',
+			"blue-primary": '#1354ed',
+			"green-primary": '#c9e4de',
+			"yellow-primary": '#faedcb',
+			"purple-primary": '#9b2fed',
+			"pink-primary": '#fcb6f4',
+			"orange-primary": '#f7d9c4',
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

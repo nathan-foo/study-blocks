@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div className="pt-16">
-      <div className="hero-section relative bg-[url('/images/home-bg.svg')] bg-center h-screen">
+      <div className="hero-section relative h-screen">
         <div className="absolute w-[75%] lg:w-[65%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <p className="font-magical-childhood text-3xl md:text-5xl text-center leading-tight">
             Study Blocks!

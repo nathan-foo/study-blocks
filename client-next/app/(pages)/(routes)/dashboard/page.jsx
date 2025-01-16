@@ -40,22 +40,25 @@ const DashboardPage = () => {
 
   return (
     <div className='px-12 pt-12'>
-      <div className='hidden py-12 md:flex items-center justify-center'>
-        <div className='rounded-lg w-[400px] md:w-[580px] lg:w-[880px] xl:w-[1184px] bg-gradient-to-r from-white to-blue-400 flex flex-col items-center justify-center text-center'>
+      <div className='py-12 flex items-center justify-center'>
+        <div className='rounded-lg w-[400px] md:w-[580px] lg:w-[880px] xl:w-[1184px] bg-blue-600 text-white flex flex-col items-center justify-center text-center'>
           {user && (
             <div>
-              <div className='pt-20 px-8 font-bold text-3xl md:text-4xl lg:text-5xl'>
+              <div className='pt-12 md:pt-20 px-8 font-bold text-3xl md:text-4xl lg:text-5xl'>
                 Hey there, {user.firstName}
               </div>
-              <div className='pt-8 pb-24 px-8 md:px-16 lg:px-32 xl:px-[17.5 rem] text-sm md:text-base'>
+              <div className='hidden md:block pt-8 pb-24 px-8 md:px-16 lg:px-32 xl:px-[17.5 rem] text-sm md:text-base'>
                 This is your dashboard, where all of your content can be found and managed. We hope you enjoy your stay!
+              </div>
+              <div className='md:hidden pt-8 pb-12 px-8 md:px-16 lg:px-32 xl:px-[17.5 rem] text-sm md:text-base'>
+                We hope you enjoy your stay!
               </div>
             </div>
           )}
         </div>
       </div>
       <div>
-        <div className='pt-16 md:pt-0 md:pb-6 text-center font-bold text-3xl'>
+        <div className='md:pb-6 text-center font-bold text-3xl'>
           Your Blocks
         </div>
         <div className='flex items-center justify-center'>

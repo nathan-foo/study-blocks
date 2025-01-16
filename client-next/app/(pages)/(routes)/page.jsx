@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div className="justify-center">
-      <div className="hero-section relative flex flex-col top-[130px] md:top-[150px] px-12">
+      <div className="hero-section relative flex flex-col top-[130px] md:top-36 px-12">
         <div className="font-bold text-4xl md:text-5xl text-center leading-normal">
           School is stressful.
         </div>

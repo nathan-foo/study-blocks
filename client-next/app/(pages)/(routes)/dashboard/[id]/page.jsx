@@ -55,9 +55,9 @@ const BlockPage = () => {
             }
 
             router.push('/dashboard');
-            toast.success('Block deleted');
+            toast.success('Block deleted.');
         } catch (error) {
-            toast.error('Something went wrong');
+            toast.error('Something went wrong.');
             throw new Error(`Failed to get block: ${error}`);
         }
     }

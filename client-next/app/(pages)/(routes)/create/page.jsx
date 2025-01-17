@@ -29,7 +29,8 @@ const CreatePage = () => {
 
     setIsLoading(true);
 
-    toast.success('Your content is being generated. Please do not refresh this page.', {
+    toast('Please wait...', {
+      icon: '⌛',
       duration: 10000,
     });
 
@@ -58,7 +59,7 @@ const CreatePage = () => {
 
       router.push('/dashboard');
 
-      toast.success('Some course materials are still being generated.', {
+      toast.success('Block generated!', {
         duration: 5000,
       });
 
@@ -86,10 +87,11 @@ const CreatePage = () => {
   const generateBlockPdf = async (res) => {
     setIsLoading(true);
 
-    toast.success('Your content is being generated. Please do not refresh this page.', {
+    toast('Please wait...', {
+      icon: '⌛',
       duration: 10000,
     });
-    
+
     const pdfUrl = res[0].appUrl;
 
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/blocks`;
@@ -119,7 +121,7 @@ const CreatePage = () => {
 
       router.push('/dashboard');
 
-      toast.success('Some course materials are still being generated.', {
+      toast.success('Block generated!', {
         duration: 5000,
       });
 
@@ -146,32 +148,34 @@ const CreatePage = () => {
   }
 
   return (
-    <div className='pt-16'>
-      <div className='flex items-center justify-center'>
-        <div className='w-[60%] mt-[10%]'>
-          <TextInput
-            setTopic={(value) => handleInput('topic', value)}
-            setDifficulty={(value) => handleInput('difficulty', value)}
-          />
-          {(isLoading) ? (
-            <Button disabled className='w-24 mt-6'>Generate</Button>
-          ) : (
-            <Button className='w-24 mt-6' onClick={generateBlock}>Generate</Button>
-          )}
-          <div className='text-center'>
-            <p className='font-bold py-4'>Or upload a pdf</p>
-            <UploadButton
-              endpoint="blockPdf"
-              onClientUploadComplete={(res) => {
-                generateBlockPdf(res);
-              }}
-              onUploadError={(error) => {
-                toast.error('Something went wrong.')
-              }}
+    <div>
+      {!isLoading ? (
+        <div className='flex items-center justify-center h-screen'>
+          <div className='w-[60%]'>
+            <TextInput
+              setTopic={(value) => handleInput('topic', value)}
+              setDifficulty={(value) => handleInput('difficulty', value)}
             />
+            <Button className='w-24 mt-6' onClick={generateBlock}>Generate</Button>
+            <div className='text-center text-sm'>
+              <p className='font-bold py-4 text-base'>Or upload a pdf</p>
+              <UploadButton
+                endpoint="blockPdf"
+                onClientUploadComplete={(res) => {
+                  generateBlockPdf(res);
+                }}
+                onUploadError={(error) => {
+                  toast.error('Something went wrong.')
+                }}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      ): (
+        <div className='flex items-center justify-center h-screen'>
+          <img src='/images/loading.webp' className='w-[156px]' />
+        </div>
+      )}
     </div>
   )
 }

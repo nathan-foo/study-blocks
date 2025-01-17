@@ -81,14 +81,14 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col items-start justify-center md:pt-[82px] w-[300px] md:w-[360px]">
-            <img src='/images/loading.gif' />
+            <img src='/images/loading.webp' />
           </div>
         </div>
       </div>
       <div className="relative top-[130px] md:top-[150px]">
         <div className="h-[740px] md:h-[540px] bg-slate-50 relative flex flex-col md:flex-row items-center md:items-start justify-center text-center md:text-start gap-8 md:gap-12 lg:gap-16">
           <div className="flex flex-col items-start justify-center md:order-1 order-2 md:pt-[82px] w-[300px] md:w-[360px]">
-            <img src='/images/loading.gif' />
+            <img src='/images/loading.webp' />
           </div>
           <div className="flex flex-col items-start justify-center md:order-2 order-1">
             <div className="md:pt-[160px] text-3xl font-bold w-[300px] md:w-[320px] lg:w-[440px]">
@@ -111,7 +111,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col items-start justify-center md:pt-[82px] w-[300px] md:w-[360px]">
-            <img src='/images/loading.gif' />
+            <img src='/images/loading.webp' />
           </div>
         </div>
       </div>

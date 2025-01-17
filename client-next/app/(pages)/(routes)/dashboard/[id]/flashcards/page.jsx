@@ -43,7 +43,7 @@ const FlashcardPage = () => {
   return (
     <div>
       {/* {block && (JSON.stringify(block.flashcards.set))} */}
-      {(block && block.flashcards) && (
+      {(block && block.flashcards) ? (
         <div className='flex items-center justify-center h-screen'>
           <div className='w-[70%] md:w-[60%]'>
             <Carousel opts={{ loop: true }} className='mt-8'>
@@ -58,6 +58,10 @@ const FlashcardPage = () => {
               <CarouselNext />
             </Carousel>
           </div>
+        </div>
+      ) : (
+        <div className='flex items-center justify-center h-screen'>
+          <img src='/images/loading.webp' className='w-[156px]' />
         </div>
       )}
     </div>

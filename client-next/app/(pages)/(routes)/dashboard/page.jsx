@@ -2,7 +2,6 @@
 
 import { Skeleton } from '@/components/ui/skeleton';
 import { useUser } from '@clerk/nextjs';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import DashboardCard from '../../_components/DashboardCard';
 
@@ -59,7 +58,7 @@ const DashboardPage = () => {
       </div>
       <div>
         <div className='md:pb-6 text-center font-bold text-3xl'>
-          Your Blocks
+          Ready to learn?
         </div>
         <div className='flex items-center justify-center'>
         <img src='/images/divider.svg' className='hidden md:block md:w-[572px] xl:w-[880px] rounded-md' />
@@ -79,7 +78,7 @@ const DashboardPage = () => {
             </div>
           </div>
         ) : (
-          <div className='py-4 px-8 flex flex-col gap-4 items-center justify-center'>
+          <div className='py-12 px-8 flex flex-col gap-4 items-center justify-center'>
             <Skeleton className='w-full h-[20px]' />
             <Skeleton className='w-full h-[20px]' />
             <Skeleton className='w-full h-[20px]' />

@@ -56,11 +56,11 @@ const ReviewPage = () => {
         <div className='py-16 px-16 md:px-32'>
             {block ? (
                 <div>
-                    <div className='pt-12 font-black text-4xl'>
+                    <div className='pt-16 font-black text-4xl'>
                         {block.outline.courseTitle}
                     </div>
-                    <div className='pt-4'>
-                        {block.outline.summary}
+                    <div className='pt-4 text-black/60'>
+                        <i>{block.outline.summary}</i>
                     </div>
                     <div>
                         <div className='pt-8 font-bold text-3xl'>

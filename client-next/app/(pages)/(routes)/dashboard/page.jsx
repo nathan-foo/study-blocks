@@ -57,13 +57,12 @@ const DashboardPage = () => {
         </div>
       </div>
       <div>
-        <div className='md:pb-6 text-center font-bold text-3xl'>
+        <div className='pb-6 text-center font-bold text-3xl'>
           Ready to learn?
         </div>
-        <div className='flex items-center justify-center'>
-        <img src='/images/divider.svg' className='hidden md:block md:w-[572px] xl:w-[880px] rounded-md' />
+        <div className='text-center mb-4'>
+          Head over to the Create tab to get started.
         </div>
-        
         {user && blocks.length > 0 ? (
           <div className='flex items-center justify-center gap-8 pt-8'>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 pb-16'>

@@ -1,5 +1,6 @@
 "use client"
 
+import Flashcard from '@/app/(pages)/_components/Flashcard';
 import {
   Carousel,
   CarouselContent,
@@ -42,21 +43,14 @@ const FlashcardPage = () => {
   return (
     <div>
       {/* {block && (JSON.stringify(block.flashcards.set))} */}
-      {(block && block.flashcards) ? (
+      {(block && block.flashcards) && (
         <div className='flex items-center justify-center h-screen'>
-          <div className='w-[50%]'>
-            <Carousel opts={{ loop: true }}>
-              <CarouselContent >
+          <div className='w-[70%] md:w-[60%]'>
+            <Carousel opts={{ loop: true }} className='mt-8'>
+              <CarouselContent>
                 {block.flashcards?.set.map((flashcard, index) => (
                   <CarouselItem key={index} className='flex items-center justify-center'>
-                    <div className='px-16 py-32 border rounded-lg text-center text-lg'>
-                      <p>
-                        <b>Q:</b> {flashcard.question}
-                      </p>
-                      <p className='pt-2'>
-                        <b>A:</b> {flashcard.answer}
-                      </p>
-                    </div>
+                    <Flashcard frontContent={flashcard.question} backContent={flashcard.answer} />
                   </CarouselItem>
                 ))}
               </CarouselContent>
@@ -64,10 +58,6 @@ const FlashcardPage = () => {
               <CarouselNext />
             </Carousel>
           </div>
-        </div>
-      ) : (
-        <div className='flex items-center justify-center h-screen text-center'>
-          Loading content...
         </div>
       )}
     </div>

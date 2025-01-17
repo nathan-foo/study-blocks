@@ -6,6 +6,7 @@ import { HiBookOpen, HiCollection } from "react-icons/hi";
 import { HiMiniTrophy } from "react-icons/hi2";
 import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
+import Footer from "../_components/Footer";
 
 export default function Home() {
   const { user } = useUser();
@@ -115,6 +116,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

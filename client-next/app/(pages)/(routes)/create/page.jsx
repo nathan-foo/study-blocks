@@ -156,9 +156,11 @@ const CreatePage = () => {
               setTopic={(value) => handleInput('topic', value)}
               setDifficulty={(value) => handleInput('difficulty', value)}
             />
+            <div className='flex items-center justify-center md:block'>
             <Button className='w-24 mt-6' onClick={generateBlock}>Generate</Button>
+            </div>
             <div className='text-center text-sm'>
-              <p className='font-bold py-4 text-base'>Or upload a pdf</p>
+              <p className='font-bold py-4 text-lg'>Or upload a pdf</p>
               <UploadButton
                 endpoint="blockPdf"
                 onClientUploadComplete={(res) => {

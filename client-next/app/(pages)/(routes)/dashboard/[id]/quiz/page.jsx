@@ -34,14 +34,13 @@ const QuizPage = () => {
 
   return (
     <div className='flex flex-col items-center justify-center text-center h-screen'>
-      {block ? (
-        <div>
-          <div className='font-bold'>Quiz Code</div>
-          <div>{block.blockId}</div>
-        </div>
-      ) : (
-        <div className='flex items-center justify-center h-screen text-center'>
-          Loading quiz code...
+      {block && (
+        <div className='flex flex-col items-center justify-center border rounded-md w-[300px] md:w-[550px] lg:w-[700px] xl:w-[800px] h-[300px] md:h-[400px] xl:h-[450px] px-6 bg-white hover:shadow-md transition-shadow'>
+          <div className='text-2xl md:text-4xl font-bold'>Quiz Code</div>
+          <div className='text-3xl md:text-6xl p-8'>
+            {block.blockId}
+          </div>
+          <div className=''>Share this code to play your custom quiz game.</div>
         </div>
       )}
     </div>

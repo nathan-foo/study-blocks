@@ -59,14 +59,14 @@ const ReviewPage = () => {
                     <div className='pt-16 font-black text-4xl'>
                         {block.outline.courseTitle}
                     </div>
-                    <div className='pt-4 text-black/60'>
+                    <div className='pt-4 text-black/60 leading-7'>
                         <i>{block.outline.summary}</i>
                     </div>
                     <div>
                         <div className='pt-8 font-bold text-3xl'>
                             {block.outline.chapters[pageIndex].chapterTitle}
                         </div>
-                        <div className='pt-4'>
+                        <div className='pt-4 leading-8'>
                             {block.outline.chapters[pageIndex].summary}
                         </div>
                         {block.outline.chapters[pageIndex].topics.map((topic, index) => (
@@ -74,7 +74,7 @@ const ReviewPage = () => {
                                 <div className='pt-4 font-bold text-xl'>
                                     {topic.topic}
                                 </div>
-                                <div className='pt-2'>
+                                <div className='pt-2 leading-8'>
                                     {topic.notes}
                                 </div>
                             </div>

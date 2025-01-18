@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious
 } from '@/components/ui/carousel';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
@@ -60,8 +61,17 @@ const FlashcardPage = () => {
           </div>
         </div>
       ) : (
-        <div className='flex items-center justify-center h-screen'>
-          <img src='/images/loading.webp' className='w-[156px]' />
+        <div className='pt-48 px-16 md:px-32 lg:px-48 flex flex-col gap-4 items-center justify-center'>
+          <Skeleton className='w-full h-[20px]' />
+          <Skeleton className='w-full h-[20px]' />
+          <Skeleton className='w-full h-[20px]' />
+          <Skeleton className='w-full h-[20px]' />
+          <Skeleton className='w-full h-[20px]' />
+          <Skeleton className='w-full h-[20px]' />
+          <Skeleton className='w-full h-[20px]' />
+          <Skeleton className='w-full h-[20px]' />
+          <Skeleton className='w-full h-[20px]' />
+          <Skeleton className='w-full h-[20px]' />
         </div>
       )}
     </div>

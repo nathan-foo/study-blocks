@@ -96,7 +96,7 @@ const ReviewPage = () => {
                     </div>
                 </div>
             ) : (
-                <div className='pt-12 flex flex-col gap-y-4'>
+                <div className='pt-12 flex flex-col gap-4'>
                     <div className='p-4 flex flex-col gap-4 items-center justify-center'>
                         <Skeleton className='w-full h-[20px]' />
                         <Skeleton className='w-full h-[20px]' />

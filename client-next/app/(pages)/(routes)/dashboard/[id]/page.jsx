@@ -2,6 +2,7 @@
 
 import DashboardIdCard from "@/app/(pages)/_components/DashboardIdCard";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -65,13 +66,26 @@ const BlockPage = () => {
     return (
         <div className="pt-16 px-12">
             <div className="pt-20 font-bold text-3xl md:text-4xl text-center">
-                {block && (
+                {block ? (
                     <div>{block.outline.courseTitle}</div>
+                ) : (
+                    <div className='px-8 flex flex-col gap-4 items-center justify-center'>
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                        <Skeleton className='w-full h-[20px]' />
+                    </div>
                 )}
             </div>
             <div className='pt-16'>
                 <div className='flex flex-col items-center justify-center text-center'>
-                    {linkId && (
+                    {(block && linkId) && (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <DashboardIdCard
                                 title='Reviews'

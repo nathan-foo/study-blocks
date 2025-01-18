@@ -54,6 +54,7 @@ const CreatePage = () => {
       });
 
       if (!response.ok) {
+        toast.error('Something went wrong.');
         throw new Error(`Response status: ${response.status}`);
       }
 
@@ -75,9 +76,11 @@ const CreatePage = () => {
       });
 
       if (!patch.ok) {
+        toast.error('Something went wrong.');
         throw new Error(`Response status: ${patch.status}`);
       }
     } catch (error) {
+      toast.error('Something went wrong.');
       throw new Error(`Failed to create block: ${error}`);
     }
 
@@ -116,6 +119,7 @@ const CreatePage = () => {
       });
 
       if (!response.ok) {
+        toast.error('Something went wrong.');
         throw new Error(`Response status: ${response.status}`);
       }
 
@@ -138,9 +142,11 @@ const CreatePage = () => {
       });
 
       if (!patch.ok) {
+        toast.error('Something went wrong.');
         throw new Error(`Response status: ${patch.status}`);
       }
     } catch (error) {
+      toast.error('Something went wrong.');
       throw new Error(`Failed to create block: ${error}`);
     }
 
@@ -167,7 +173,7 @@ const CreatePage = () => {
                   generateBlockPdf(res);
                 }}
                 onUploadError={(error) => {
-                  toast.error('Something went wrong.')
+                  toast.error('Something went wrong.');
                 }}
               />
             </div>

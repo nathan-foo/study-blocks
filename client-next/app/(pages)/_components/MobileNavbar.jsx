@@ -10,7 +10,7 @@ const MobileNavbar = () => {
     const { user } = useUser();
 
     return (
-        <div className='md:hidden fixed bg-white top-0 left-0 w-full py-5 px-6'>
+        <div className='md:hidden fixed bg-white z-50 top-0 left-0 w-full py-5 px-6'>
             <div className='flex justify-between'>
                 <Link href='/'>
                     <p className='text-sm text-blue-primary font-magical-childhood ml-3 mr-1'>

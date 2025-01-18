@@ -53,7 +53,7 @@ export async function POST(request) {
 
     if (event.type === 'user.created') {
         // Make sure to store url in deployment environment
-        const url = `${process.env.API_URL}/api/users`;
+        const url = `${process.env.NEXT_PUBLIC_API_URL}/api/users`;
 
         try {
             const response = await fetch(url, {

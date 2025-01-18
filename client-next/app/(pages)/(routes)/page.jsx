@@ -81,15 +81,15 @@ export default function Home() {
               A block is your personalized study kit for any subject! Blocks are made in seconds and can cover any topic you choose.
             </div>
           </div>
-          <div className="flex flex-col items-start justify-center md:pt-[82px] w-[300px] md:w-[360px]">
-            <img src='/images/loading.webp' />
+          <div className="flex flex-col items-start justify-center pt-12 md:pt-[82px] w-[300px] md:w-[360px]">
+            <img src='/images/question.svg' />
           </div>
         </div>
       </div>
       <div className="relative top-[130px] md:top-[150px]">
         <div className="h-[740px] md:h-[540px] bg-slate-50 relative flex flex-col md:flex-row items-center md:items-start justify-center text-center md:text-start gap-8 md:gap-12 lg:gap-16">
-          <div className="flex flex-col items-start justify-center md:order-1 order-2 md:pt-[82px] w-[300px] md:w-[360px]">
-            <img src='/images/loading.webp' />
+          <div className="flex flex-col items-start justify-center md:order-1 order-2 pt-12 md:pt-[82px] w-[300px] md:w-[360px]">
+            <img src='/images/flashcard.svg' />
           </div>
           <div className="flex flex-col items-start justify-center md:order-2 order-1">
             <div className="md:pt-[160px] text-3xl font-bold w-[300px] md:w-[320px] lg:w-[440px]">
@@ -111,8 +111,8 @@ export default function Home() {
               It's easy! Simply enter a topic or upload a pdf of notes, and we'll generate custom review materials just for you.
             </div>
           </div>
-          <div className="flex flex-col items-start justify-center md:pt-[82px] w-[300px] md:w-[360px]">
-            <img src='/images/loading.webp' />
+          <div className="flex flex-col items-start justify-center pt-12 md:pt-[82px] w-[300px] md:w-[360px]">
+            <img src='/images/start.svg' />
           </div>
         </div>
       </div>

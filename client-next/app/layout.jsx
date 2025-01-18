@@ -11,7 +11,7 @@ const poppins = Poppins({ subsets: ['latin'], weight: [ "400", "700", "800" ] })
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignOutUrl="/">
       <html lang="en">
         <body className={poppins.className}>
           {children}

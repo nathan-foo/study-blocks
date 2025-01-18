@@ -3,8 +3,8 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 
 export const metadata = {
-  title: "Study Blocks Prototype",
-  description: "An AI-powered LMS app for reviewing study material.",
+  title: "Study Blocks: An AI-powered learning app for reviewing study material",
+  description: "An AI-powered learning app for reviewing study material",
 };
 
 const poppins = Poppins({ subsets: ['latin'], weight: [ "400", "700", "800" ] });

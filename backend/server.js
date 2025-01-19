@@ -11,7 +11,7 @@ app.use(cors());
 const io = socketIo(server, {
     connectionStateRecovery: {},
     cors: {
-        origin: "https://sb.nathanfoo.com",
+        origin: "http://sb.nathanfoo.com",
         methods: ["GET", "POST"],
     }
 });

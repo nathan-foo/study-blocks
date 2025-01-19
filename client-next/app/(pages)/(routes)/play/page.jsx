@@ -24,7 +24,7 @@ const PlayPage = () => {
   const [leaderboard, setLeaderboard] = useState(false);
 
   useEffect(() => {
-    socket = io(process.env.NEXT_PUBLIC_SOCKET); // TODO update route for production
+    socket = io('https://study-blocks.nathanfoo.com/play'); // TODO update route for production
 
     // Handle user join errors
     socket.on('invalidName', () => {

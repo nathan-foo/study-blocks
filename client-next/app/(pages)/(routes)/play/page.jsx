@@ -24,7 +24,7 @@ const PlayPage = () => {
   const [leaderboard, setLeaderboard] = useState(false);
 
   useEffect(() => {
-    socket = io('ws://localhost:8000'); // TODO update route for production
+    socket = io('ws://sb.nathanfoo.com'); // TODO update route for production
 
     // Handle user join errors
     socket.on('invalidName', () => {

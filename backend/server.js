@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 const io = socketIo(server, {
     connectionStateRecovery: {},
     cors: {
-        origin: "sb.nathanfoo.com:8000",
+        origin: "http://sb.nathanfoo.com",
         methods: ["GET", "POST"],
     }
 });

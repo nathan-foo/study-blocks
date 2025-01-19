@@ -8,10 +8,14 @@ const server = createServer(app);
 
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
 const io = socketIo(server, {
     connectionStateRecovery: {},
     cors: {
-        origin: "http://sb.nathanfoo.com",
+        origin: "sb.nathanfoo.com:8000",
         methods: ["GET", "POST"],
     }
 });
@@ -86,7 +90,7 @@ io.on('connection', (socket) => {
         if (answer) {
             player.points += 1000 - Math.floor((Math.random() * 100) + (game.correctAnswers / game.players.length * 800));
             game.correctAnswers += 1;
-        } 
+        }
         game.answers += 1;
 
         if (game.answers === game.players.length) {
@@ -128,7 +132,7 @@ io.on('connection', (socket) => {
     // Handle user leave
     socket.on('disconnect', () => {
         let game = games.find(game => game.id === socket.room);
-        
+
         if (game) {
             game.players = game.players.filter(player => player.name != socket.name);
 

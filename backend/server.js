@@ -4,7 +4,10 @@ const socketIo = require('socket.io');
 const cors = require('cors');
 
 const app = express();
-const server = createServer(app);
+const server = createServer({
+    key: fs.readFileSync("/etc/letsencrypt/live/sb.nathanfoo.com/privkey.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/live/sb.nathanfoo.com/fullchain.pem"),
+}, app);
 
 app.use(cors());
 

@@ -25,6 +25,7 @@ const PlayPage = () => {
 
   useEffect(() => {
     socket = io('https://sb.nathanfoo.com', {
+    // socket = io('http://localhost:8000', {
       withCredentials: true,
     });
 

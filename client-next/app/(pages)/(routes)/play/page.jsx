@@ -24,7 +24,9 @@ const PlayPage = () => {
   const [leaderboard, setLeaderboard] = useState(false);
 
   useEffect(() => {
-    socket = io('http://sb.nathanfoo.com');
+    socket = io('http://sb.nathanfoo.com', {
+      withCredentials: true,
+    });
 
     // Handle user join errors
     socket.on('invalidName', () => {

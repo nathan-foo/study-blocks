@@ -24,7 +24,7 @@ const PlayPage = () => {
   const [leaderboard, setLeaderboard] = useState(false);
 
   useEffect(() => {
-    socket = io('https://study-blocks.nathanfoo.com'); // TODO update route for production
+    socket = io('http://sb.nathanfoo.com');
 
     // Handle user join errors
     socket.on('invalidName', () => {
@@ -260,8 +260,8 @@ const PlayPage = () => {
                     // Game end screen
                     <div className='mt-32 md:mt-40'>
                       <div className='text-3xl md:text-5xl font-bold'>Game over!</div>
-                          <div className='mt-6 md:mt-10'>Let's see how everyone did.</div>
-                          <div className='mt-8 md:mt-16'>
+                      <div className='mt-6 md:mt-10'>Let's see how everyone did.</div>
+                      <div className='mt-8 md:mt-16'>
                         <div className='flex flex-col items-center justify-center gap-3'>
                           {players.map((player, index) => (
                             <div

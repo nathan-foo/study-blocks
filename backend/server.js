@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 const io = socketIo(server, {
     connectionStateRecovery: {},
     cors: {
-        origin: "http://sb.nathanfoo.com",
+        origin: "https://study-blocks.nathanfoo.com",
         methods: ["GET", "POST"],
     }
 });
@@ -147,7 +147,7 @@ io.on('connection', (socket) => {
     });
 });
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 80;
 
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

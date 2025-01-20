@@ -2,24 +2,20 @@ const express = require('express');
 const { createServer } = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
-const fs = require("fs");
 
 const app = express();
-const server = createServer({
-    key: fs.readFileSync("/etc/letsencrypt/live/sb.nathanfoo.com/privkey.pem"),
-    cert: fs.readFileSync("/etc/letsencrypt/live/sb.nathanfoo.com/fullchain.pem"),
-}, app);
+const server = createServer(app);
 
 app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+// app.get('/', (req, res) => {
+//     res.send('Hello World!');
+// });
 
 const io = socketIo(server, {
     connectionStateRecovery: {},
     cors: {
-        origin: "https://study-blocks.nathanfoo.com",
+        origin: "http://localhost:3000",
         methods: ["GET", "POST"],
         credentials: true,
     }

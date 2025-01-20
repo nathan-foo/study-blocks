@@ -24,7 +24,7 @@ const PlayPage = () => {
   const [leaderboard, setLeaderboard] = useState(false);
 
   useEffect(() => {
-    socket = io('http://sb.nathanfoo.com', {
+    socket = io('https://sb.nathanfoo.com', {
       withCredentials: true,
     });
 

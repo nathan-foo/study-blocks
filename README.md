@@ -11,3 +11,6 @@ Work in progress.
 - Gemini API
 - Clerk Authentication
 - UploadThing
+
+## Notes
+- Refactor to use serverless functions for broadcasting

@@ -8,10 +8,6 @@ const server = createServer(app);
 
 app.use(cors());
 
-// app.get('/', (req, res) => {
-//     res.send('Hello World!');
-// });
-
 const io = socketIo(server, {
     connectionStateRecovery: {},
     cors: {

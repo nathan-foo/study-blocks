@@ -1,6 +1,6 @@
 # Study Blocks
 
-Work in progress.
+An AI tool to transform student note PDFs into flashcards, course review material, and multiplayer game quizzes.
 
 ## Tools and Technologies
 - Next.js

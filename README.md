@@ -12,5 +12,43 @@ An AI tool to transform student note PDFs into flashcards, course review materia
 - Clerk Authentication
 - UploadThing
 
-## Notes
-- Refactor to use serverless functions for broadcasting
+## Repository Structure
+
+```
+.
+├── backend
+└── client-next
+    ├── app
+    │   ├── (auth)
+    │   │   ├── sign-in
+    │   │   │   └── [[...sign-in]]
+    │   │   └── sign-up
+    │   │       └── [[...sign-up]]
+    │   ├── (pages)
+    │   │   ├── (routes)
+    │   │   │   ├── about
+    │   │   │   ├── contact
+    │   │   │   ├── create
+    │   │   │   ├── dashboard
+    │   │   │   │   └── [id]
+    │   │   │   │       ├── flashcards
+    │   │   │   │       ├── quiz
+    │   │   │   │       └── review
+    │   │   │   └── play
+    │   │   └── _components
+    │   └── api
+    │       ├── blocks
+    │       │   └── [id]
+    │       ├── uploadthing
+    │       ├── users
+    │       │   └── [id]
+    │       └── webhooks
+    │           └── clerk
+    ├── components
+    │   └── ui
+    ├── lib
+    ├── models
+    └── public
+        ├── fonts
+        └── images
+```
